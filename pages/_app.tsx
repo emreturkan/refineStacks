@@ -13,9 +13,8 @@ import {
   ErrorComponent,
 } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-nextjs-router";
-import { dataProvider } from "@pankod/refine-supabase";
-import { authProvider } from "src/authProvider";
-import { supabaseClient } from "src/utility";
+import dataProvider from "@pankod/refine-simple-rest";
+import index from "pages";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -24,12 +23,12 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <NotificationsProvider position="top-right">
         <Refine
           routerProvider={routerProvider}
-          dataProvider={dataProvider(supabaseClient)}
-          authProvider={authProvider}
-          LoginPage={AuthPage}
+          dataProvider={dataProvider(
+            "https://jsonplaceholder.typicode.com/users"
+          )}
+          resources={[{ name: "users" }]}
           notificationProvider={notificationProvider}
           Layout={Layout}
-          ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
         >
           <Component {...pageProps} />
