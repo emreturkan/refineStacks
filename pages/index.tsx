@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import { GetListResponse, LayoutWrapper, useTable } from "@pankod/refine-core";
 import { DataProvider } from "@pankod/refine-strapi-v4";
 import React from "react";
+import Users from "./users";
 
 interface IProduct {
   id: number;
@@ -26,7 +27,11 @@ const index: React.FC<ItemProp> = ({ users }) => {
         {tableQueryResult?.data?.data?.map((product) => {
           console.log(product);
 
-          return <></>;
+          return (
+            <>
+              <Users id={product.id} name={product.name} />
+            </>
+          );
         })}
       </div>
     </LayoutWrapper>

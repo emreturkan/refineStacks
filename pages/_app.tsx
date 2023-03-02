@@ -14,7 +14,6 @@ import {
 } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-nextjs-router";
 import dataProvider from "@pankod/refine-simple-rest";
-import index from "pages";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -26,7 +25,12 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           dataProvider={dataProvider(
             "https://jsonplaceholder.typicode.com/users"
           )}
-          resources={[{ name: "users" }]}
+          resources={[
+            {
+              name: "users",
+              list: () => <div>Product Detail Page</div>,
+            },
+          ]}
           notificationProvider={notificationProvider}
           Layout={Layout}
           catchAll={<ErrorComponent />}
